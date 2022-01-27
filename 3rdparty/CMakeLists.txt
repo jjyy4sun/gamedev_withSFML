@@ -1,1 +1,3 @@
-add_subdirectory(SFML)
+
+
+add_subdirectory(sfml-2.5)
