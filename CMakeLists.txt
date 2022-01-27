@@ -10,6 +10,7 @@ add_subdirectory(3rdparty)
 add_subdirectory(src)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/SFML-2.5.1/include)
 
 
 add_executable(blade main.cpp)

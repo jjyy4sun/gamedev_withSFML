@@ -1,28 +1,42 @@
 #include<iostream>
 #include <SFML/Graphics.hpp>
-
 #include "blade.h"
 
-int tellusIfworks() {
-    std::cout << "it works!"<<std::endl;
-    return 0;
+Blade::Blade() : mWindow(sf::VideoMode(640, 480), "SFML Application"),
+                mPlayer() {
+    mPlayer.setRadius(40.f);
+    mPlayer.setPosition(sf::Vector2<float>(100.0f, 100.0f));
+    mPlayer.setFillColor(sf::Color::Cyan);
+}
+
+void Blade::processEvents() {
+    sf::Event event;
+    while (mWindow.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            mWindow.close();
+        }
+    }
+}
+
+void Blade::update() {
+
+}
+
+void Blade::render() {
+    mWindow.clear();
+    mWindow.draw(mPlayer);
+    mWindow.display();
 }
 
 void Blade::run() {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Application");
-    sf::CircleShape shape;
-    shape.setRadius(40.0f);
-    shape.setPosition(sf::Vector2<float>(100.0f, 100.0f));
-    shape.setFillColor(sf::Color::Cyan);
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-        window.clear();
-        window.draw(shape);
-        window.display();
+    while (mWindow.isOpen()) {
+        processEvents();
+        update();
+        render();
     }
+}
+
+
+Blade::~Blade() {
+    
 }

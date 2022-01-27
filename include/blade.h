@@ -1,14 +1,20 @@
 #ifndef BLADE_H_
-int tellusIfworks();
+#include <SFML/Graphics.hpp>
 
 class Blade
 {
 private:
     /* data */
+    void processEvents();
+    void update();
+    void render();
 public:
-    Blade(/* args */){}
-    ~Blade(){}
+    Blade(/* args */);
+    ~Blade();
     void run();
+private:
+    sf::RenderWindow mWindow;
+    sf::CircleShape mPlayer;
 };
 
 
