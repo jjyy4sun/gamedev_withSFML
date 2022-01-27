@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 
+#include "blade.h"
+
 int main() {
+    tellusIfworks();
     sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Application");
     sf::CircleShape shape;
     shape.setRadius(40.0f);
@@ -17,4 +20,5 @@ int main() {
         window.draw(shape);
         window.display();
     }
+    return 0;
 }
