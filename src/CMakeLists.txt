@@ -4,8 +4,7 @@ aux_source_directory(. SRCS)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-set(SFML_STATIC_LIBRARIES TRUE)
-set(SFML_DIR "${CMAKE_SOURCE_DIR}/3rdparty/SFML-2.5.1/lib/cmake/SFML")
+set(SFML_DIR "${SFML_ROOT_DIR}/SFML-2.5.1/lib/cmake/SFML")
 
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio network REQUIRED)
 
