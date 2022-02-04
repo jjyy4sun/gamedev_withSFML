@@ -3,23 +3,59 @@
 #include "blade.h"
 
 Blade::Blade() : mWindow(sf::VideoMode(640, 480), "SFML Application"),
-                mPlayer() {
-    mPlayer.setRadius(40.f);
+                mPlayer() ,
+                mTexture() {
+    if (!mTexture.loadFromFile("resource/Textures/eagle.png")) {
+        // handle error
+    }
+    mPlayer.setTexture(mTexture);
     mPlayer.setPosition(sf::Vector2<float>(100.0f, 100.0f));
-    mPlayer.setFillColor(sf::Color::Cyan);
 }
 
 void Blade::processEvents() {
     sf::Event event;
     while (mWindow.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
+        switch (event.type)
+        {
+        case sf::Event::KeyPressed: {
+            handleKeyboardInput(event.key.code, true); 
+            break;
+        }
+        case sf::Event::KeyReleased: {
+            handleKeyboardInput(event.key.code, false); 
+            break;
+        }
+        case sf::Event::Closed: {
             mWindow.close();
+            break;
+        }
+        default:
+            break;
         }
     }
 }
 
-void Blade::update() {
+void Blade::update(sf::Time deltaTime) {
+    sf::Vector2f movement(0.f, 0.f);
 
+    if (isUpPressed) {
+        movement.y -= PLAYER_SPEED;
+        // isUpPressed = false;
+    }
+    if (isDownPressed) {
+        movement.y += PLAYER_SPEED;
+        // isDownPressed = false;
+    }
+    if (isLeftPressed) {
+        movement.x -= PLAYER_SPEED;
+        // isLeftPressed = false;
+    }
+    if (isRightPressed) {
+        movement.x += PLAYER_SPEED;
+        // isRightPressed = false;
+    }
+    // mPlayer.move(movement);
+    mPlayer.move(movement * deltaTime.asSeconds());
 }
 
 void Blade::render() {
@@ -29,13 +65,31 @@ void Blade::render() {
 }
 
 void Blade::run() {
+    sf::Clock clock;
+    sf::Time timeSpendFromLastFrame = sf::Time::Zero;
     while (mWindow.isOpen()) {
+        timeSpendFromLastFrame += clock.restart();
         processEvents();
-        update();
+        if (timeSpendFromLastFrame > TimePerFrame) {
+            timeSpendFromLastFrame -= TimePerFrame; 
+            processEvents();
+            update(TimePerFrame);
+        }
         render();
     }
 }
 
+void Blade::handleKeyboardInput(sf::Keyboard::Key key, bool isPressed) {
+    if (key == sf::Keyboard::W) {
+        isUpPressed = true;
+    } else if (key == sf::Keyboard::S) {
+        isDownPressed = true;
+    } else if (key == sf::Keyboard::A) {
+        isLeftPressed = true;
+    } else if(key == sf::Keyboard::D) {
+        isRightPressed = true;
+    }
+}
 
 Blade::~Blade() {
     

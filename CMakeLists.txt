@@ -11,7 +11,8 @@ if (CMAKE_HOST_WIN32)
     set(SFML_ROOT_DIR "${CMAKE_SOURCE_DIR}/3rdparty/SFML/windows")
 elseif (CMAKE_HOST_APPLE)
     set(SFML_ROOT_DIR "${CMAKE_SOURCE_DIR}/3rdparty/SFML/Apple")
-    exec_program(COMMAND install_name_tool -add_rpath ${SFML_ROOT_DIR}/SFML-2.5.1/lib)
+    message("add rpath: ${SFML_ROOT_DIR}/SFML-2.5.1/lib")
+    exec_program(COMMAND install_name_tool -add_rpath ${SFML_ROOT_DIR}/SFML-2.5.1/lib ./blade)
 elseif (CMAKE_HOST_UNIX)
     set(SFML_ROOT_DIR "${CMAKE_SOURCE_DIR}/3rdparty/SFML/linux")
 endif ()
@@ -26,3 +27,7 @@ include_directories(${SFML_ROOT_DIR}/SFML-2.5.1/include)
 add_executable(blade main.cpp)
 
 target_link_libraries(blade PRIVATE gamecore)
+
+add_custom_target(copyResouce ALL
+                COMMAND ${CMAKE_COMMAND} -E
+                copy_directory ${PROJECT_SOURCE_DIR}/resource ${PROJECT_BINARY_DIR}/resource)   
