@@ -2,10 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "blade.h"
 
+const std::string eagle_path = std::string(RESOURCE_DIR).append("/Textures/eagle.png");
+
 Blade::Blade() : mWindow(sf::VideoMode(640, 480), "SFML Application"),
                 mPlayer() ,
                 mTexture() {
-    if (!mTexture.loadFromFile("resource/Textures/eagle.png")) {
+    if (!mTexture.loadFromFile(eagle_path)) {
         // handle error
     }
     mPlayer.setTexture(mTexture);
@@ -40,19 +42,19 @@ void Blade::update(sf::Time deltaTime) {
 
     if (isUpPressed) {
         movement.y -= PLAYER_SPEED;
-        // isUpPressed = false;
+        isUpPressed = false;
     }
     if (isDownPressed) {
         movement.y += PLAYER_SPEED;
-        // isDownPressed = false;
+        isDownPressed = false;
     }
     if (isLeftPressed) {
         movement.x -= PLAYER_SPEED;
-        // isLeftPressed = false;
+        isLeftPressed = false;
     }
     if (isRightPressed) {
         movement.x += PLAYER_SPEED;
-        // isRightPressed = false;
+        isRightPressed = false;
     }
     // mPlayer.move(movement);
     mPlayer.move(movement * deltaTime.asSeconds());

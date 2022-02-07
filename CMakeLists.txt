@@ -30,4 +30,4 @@ target_link_libraries(blade PRIVATE gamecore)
 
 add_custom_target(copyResouce ALL
                 COMMAND ${CMAKE_COMMAND} -E
-                copy_directory ${PROJECT_SOURCE_DIR}/resource ${PROJECT_BINARY_DIR}/resource)   
+                copy_directory ${PROJECT_SOURCE_DIR}/resource ${CMAKE_BINARY_DIR}/resource)   
