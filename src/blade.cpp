@@ -5,12 +5,9 @@
 const std::string eagle_path = std::string(RESOURCE_DIR).append("/Textures/eagle.png");
 
 Blade::Blade() : mWindow(sf::VideoMode(640, 480), "SFML Application"),
-                mPlayer() ,
-                mTexture() {
-    if (!mTexture.loadFromFile(eagle_path)) {
-        // handle error
-    }
-    mPlayer.setTexture(mTexture);
+                mPlayer() {
+    mTextureHolder.Load(Textures::Airplane, eagle_path);
+    mPlayer.setTexture(mTextureHolder.get(Textures::Airplane));
     mPlayer.setPosition(sf::Vector2<float>(100.0f, 100.0f));
 }
 

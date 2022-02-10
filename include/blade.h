@@ -1,16 +1,7 @@
 #ifndef BLADE_H_
 #include <SFML/Graphics.hpp>
-
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-#define RESOURCE_DIR "../resource"
-#elif __APPLE__
-#define RESOURCE_DIR "resource"
-#elif __LINUX__
-#define RESOURCE_DIR "resource"
-#endif
-
-#define PLAYER_SPEED 1.0f
-const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+#include "ResourceHolder.hpp"
+#include "define.h"
 
 class Blade
 {
@@ -27,7 +18,7 @@ public:
 private:
     sf::RenderWindow mWindow;
     sf::Sprite mPlayer;
-    sf::Texture mTexture;
+    ResourceHolder<sf::Texture, Textures::ID> mTextureHolder;
 
     bool isUpPressed{false};
     bool isDownPressed{false};
