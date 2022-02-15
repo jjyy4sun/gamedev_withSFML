@@ -1,7 +1,9 @@
 #ifndef BLADE_H_
+#define BLADE_H_
 #include <SFML/Graphics.hpp>
 #include "ResourceHolder.hpp"
 #include "define.h"
+#include "Aircraft.hpp"
 
 class Blade
 {
@@ -19,6 +21,7 @@ private:
     sf::RenderWindow mWindow;
     sf::Sprite mPlayer;
     ResourceHolder<sf::Texture, Textures::ID> mTextureHolder;
+    Aircraft *aircraft{nullptr};
 
     bool isUpPressed{false};
     bool isDownPressed{false};

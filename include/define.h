@@ -16,7 +16,9 @@ namespace Textures {
     enum ID {
         Airplane,
         Missile,
-        Lanscape
+        Lanscape,
+        Eagle,
+        Raptor
     };
 }
 

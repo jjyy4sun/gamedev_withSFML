@@ -1,3 +1,7 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+
 class Entity {
   public:
     void setVelocity(sf::Vector2f velocity);

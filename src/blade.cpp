@@ -1,13 +1,13 @@
 #include<iostream>
-#include <SFML/Graphics.hpp>
 #include "blade.h"
 
 const std::string eagle_path = std::string(RESOURCE_DIR).append("/Textures/eagle.png");
 
 Blade::Blade() : mWindow(sf::VideoMode(640, 480), "SFML Application"),
                 mPlayer() {
-    mTextureHolder.Load(Textures::Airplane, eagle_path);
-    mPlayer.setTexture(mTextureHolder.get(Textures::Airplane));
+    mTextureHolder.Load(Textures::Eagle, eagle_path);
+    aircraft = new Aircraft(Aircraft::Eagle, mTextureHolder);
+    mPlayer.setTexture(mTextureHolder.get(Textures::Eagle));
     mPlayer.setPosition(sf::Vector2<float>(100.0f, 100.0f));
 }
 
@@ -91,5 +91,7 @@ void Blade::handleKeyboardInput(sf::Keyboard::Key key, bool isPressed) {
 }
 
 Blade::~Blade() {
-    
+    if (aircraft) {
+        delete aircraft;
+    }
 }
