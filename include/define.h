@@ -22,4 +22,10 @@ namespace Textures {
     };
 }
 
+enum Layer {
+    Background,
+    Air,
+    LayerCount
+};
+
 #endif DEFINE_H_

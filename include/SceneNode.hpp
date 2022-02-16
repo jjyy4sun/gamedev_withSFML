@@ -11,9 +11,14 @@ class SceneNode : public sf::Transormable, public sf::Drawable,
     SceneNode();
     void attachChild(ScenePtr child);
     ScenePtr detachChild(const SceneNode& node);
+    void update(sf::Time dt);
+    sf::Vector2f getWorldPosition() const;
   private:
-    final virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void updateCurrent(sf::Time dt);
+    void updateChildren(sf::Time dt);
+    sf::Transform getWorldTransform() const;
 
   private:
     std::vector<ScenePtr> mChildren;
