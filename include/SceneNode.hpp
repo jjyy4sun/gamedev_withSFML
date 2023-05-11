@@ -1,5 +1,5 @@
 #pragma once
-#include<vecotr>
+#include<vector>
 #include <SFML/Graphics.hpp>
 
 class SceneNode : public sf::Transormable, public sf::Drawable,
